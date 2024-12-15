@@ -4,8 +4,8 @@ let allCitations = []; // To store all the loaded citations
 fetch('justice.json')
   .then(response => response.json())
   .then(data => {
-    allCitations = data; // Save data for filtering
-    renderCitations(data); // Render all citations initially
+    allCitations = data; // Save data for sorting
+    renderCitations(allCitations); // Render all citations initially
   })
   .catch(error => {
     console.error('Error loading JSON:', error);
@@ -16,7 +16,6 @@ function renderCitations(citations) {
   const container = document.getElementById('citations-container');
   container.innerHTML = ''; // Clear the container
 
-  // Loop through each citation and render it
   citations.forEach(entry => {
     const citationDiv = document.createElement('div');
     citationDiv.className = 'citation';
@@ -40,20 +39,13 @@ function renderCitations(citations) {
   });
 }
 
-// Filter functionality
-document.getElementById('apply-filter').addEventListener('click', () => {
-  const category = document.getElementById('filter-category').value;
-  const filterValue = document.getElementById('filter-input').value.toLowerCase();
+// Event listeners for sorting
+document.getElementById('sort-asc').addEventListener('click', () => {
+  const sortedCitations = [...allCitations].sort((a, b) => a.publicationYear - b.publicationYear);
+  renderCitations(sortedCitations);
+});
 
-  let filteredCitations = allCitations;
-
-  // Apply filter
-  if (category !== 'all') {
-    filteredCitations = allCitations.filter(entry => {
-      const field = entry[category]?.toString().toLowerCase() || '';
-      return field.includes(filterValue);
-    });
-  }
-
-  renderCitations(filteredCitations);
+document.getElementById('sort-desc').addEventListener('click', () => {
+  const sortedCitations = [...allCitations].sort((a, b) => b.publicationYear - a.publicationYear);
+  renderCitations(sortedCitations);
 });

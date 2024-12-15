@@ -22,23 +22,21 @@
       font-size: 0.9em;
       color: #555;
     }
-    #filter-controls {
+    #sort-controls {
       margin-bottom: 20px;
+    }
+    button {
+      margin-right: 10px;
+      padding: 5px 10px;
+      font-size: 1em;
     }
   </style>
 </head>
 <body>
   <h1>Citations</h1>
-  <div id="filter-controls">
-    <label for="filter-category">Filter by:</label>
-    <select id="filter-category">
-      <option value="all">All</option>
-      <option value="author">Author</option>
-      <option value="isPartOf">Publication</option>
-      <option value="publicationYear">Year</option>
-    </select>
-    <input type="text" id="filter-input" placeholder="Enter filter value..." />
-    <button id="apply-filter">Apply Filter</button>
+  <div id="sort-controls">
+    <button id="sort-asc">Sort by Year (Ascending)</button>
+    <button id="sort-desc">Sort by Year (Descending)</button>
   </div>
   <div id="citations-container"></div>
   <script src="script.js"></script>
