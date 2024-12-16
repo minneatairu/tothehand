@@ -22,23 +22,31 @@
       font-size: 0.9em;
       color: #555;
     }
-    #sort-controls {
-      margin-bottom: 20px;
+    #pagination-controls {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
     }
-    button {
-      margin-right: 10px;
+    .page-button {
+      margin: 0 5px;
       padding: 5px 10px;
       font-size: 1em;
+      cursor: pointer;
+    }
+    .page-button:disabled {
+      cursor: not-allowed;
+      background-color: #ddd;
     }
   </style>
 </head>
 <body>
   <h1>Citations</h1>
-  <div id="sort-controls">
-    <button id="sort-asc">Sort by Year (Ascending)</button>
-    <button id="sort-desc">Sort by Year (Descending)</button>
-  </div>
   <div id="citations-container"></div>
+  <div id="pagination-controls">
+    <button id="prev-page" class="page-button" disabled>Previous</button>
+    <span id="current-page">Page 1</span>
+    <button id="next-page" class="page-button">Next</button>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>

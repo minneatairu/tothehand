@@ -1,15 +1,27 @@
 let allCitations = []; // To store all the loaded citations
+let currentPage = 1;   // Current page number
+const itemsPerPage = 12; // Number of items per page
 
 // Load the JSON file
 fetch('justice.json')
   .then(response => response.json())
   .then(data => {
-    allCitations = data; // Save data for sorting
-    renderCitations(allCitations); // Render all citations initially
+    allCitations = data; // Save data for pagination
+    renderPage(currentPage); // Render the first page initially
   })
   .catch(error => {
     console.error('Error loading JSON:', error);
   });
+
+// Function to render a specific page
+function renderPage(page) {
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const citationsToDisplay = allCitations.slice(startIndex, endIndex);
+
+  renderCitations(citationsToDisplay);
+  updatePaginationControls();
+}
 
 // Function to render citations
 function renderCitations(citations) {
@@ -39,13 +51,28 @@ function renderCitations(citations) {
   });
 }
 
-// Event listeners for sorting
-document.getElementById('sort-asc').addEventListener('click', () => {
-  const sortedCitations = [...allCitations].sort((a, b) => a.publicationYear - b.publicationYear);
-  renderCitations(sortedCitations);
+// Function to update pagination controls
+function updatePaginationControls() {
+  const totalPages = Math.ceil(allCitations.length / itemsPerPage);
+  document.getElementById('current-page').textContent = `Page ${currentPage}`;
+
+  // Enable or disable buttons based on the current page
+  document.getElementById('prev-page').disabled = currentPage === 1;
+  document.getElementById('next-page').disabled = currentPage === totalPages;
+}
+
+// Event listeners for pagination buttons
+document.getElementById('prev-page').addEventListener('click', () => {
+  if (currentPage > 1) {
+    currentPage--;
+    renderPage(currentPage);
+  }
 });
 
-document.getElementById('sort-desc').addEventListener('click', () => {
-  const sortedCitations = [...allCitations].sort((a, b) => b.publicationYear - a.publicationYear);
-  renderCitations(sortedCitations);
+document.getElementById('next-page').addEventListener('click', () => {
+  const totalPages = Math.ceil(allCitations.length / itemsPerPage);
+  if (currentPage < totalPages) {
+    currentPage++;
+    renderPage(currentPage);
+  }
 });
