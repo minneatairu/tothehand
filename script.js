@@ -1,13 +1,13 @@
 let allCitations = []; // To store all the loaded citations
-let currentPage = 1;   // Current page number
-const itemsPerPage = 12; // Number of items per page
+let currentPage = 1; // Current page number
+const itemsPerPage = 10; // Number of citations per page
 
 // Load the JSON file
 fetch('justice.json')
   .then(response => response.json())
   .then(data => {
     allCitations = data; // Save data for pagination
-    renderPage(currentPage); // Render the first page initially
+    renderPage(currentPage); // Render the first page
   })
   .catch(error => {
     console.error('Error loading JSON:', error);
@@ -15,20 +15,16 @@ fetch('justice.json')
 
 // Function to render a specific page
 function renderPage(page) {
-  const startIndex = (page - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const citationsToDisplay = allCitations.slice(startIndex, endIndex);
-
-  renderCitations(citationsToDisplay);
-  updatePaginationControls();
-}
-
-// Function to render citations
-function renderCitations(citations) {
   const container = document.getElementById('citations-container');
   container.innerHTML = ''; // Clear the container
 
-  citations.forEach(entry => {
+  // Calculate start and end indices for the current page
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage, allCitations.length);
+
+  // Render citations for the current page
+  for (let i = startIndex; i < endIndex; i++) {
+    const entry = allCitations[i];
     const citationDiv = document.createElement('div');
     citationDiv.className = 'citation';
 
@@ -48,20 +44,23 @@ function renderCitations(citations) {
     citationDiv.appendChild(title);
     citationDiv.appendChild(details);
     container.appendChild(citationDiv);
-  });
+  }
+
+  // Update pagination controls
+  updatePaginationControls(page);
 }
 
 // Function to update pagination controls
-function updatePaginationControls() {
+function updatePaginationControls(page) {
   const totalPages = Math.ceil(allCitations.length / itemsPerPage);
-  document.getElementById('current-page').textContent = `Page ${currentPage}`;
+  document.getElementById('page-info').textContent = `Page ${page} of ${totalPages}`;
 
-  // Enable or disable buttons based on the current page
-  document.getElementById('prev-page').disabled = currentPage === 1;
-  document.getElementById('next-page').disabled = currentPage === totalPages;
+  // Enable or disable buttons based on current page
+  document.getElementById('prev-page').disabled = page === 1;
+  document.getElementById('next-page').disabled = page === totalPages;
 }
 
-// Event listeners for pagination buttons
+// Event listeners for pagination controls
 document.getElementById('prev-page').addEventListener('click', () => {
   if (currentPage > 1) {
     currentPage--;

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Citations</title>
+  <title>Citations with Pagination</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -26,16 +26,11 @@
       margin-top: 20px;
       display: flex;
       justify-content: center;
+      gap: 10px;
     }
-    .page-button {
-      margin: 0 5px;
+    button {
       padding: 5px 10px;
       font-size: 1em;
-      cursor: pointer;
-    }
-    .page-button:disabled {
-      cursor: not-allowed;
-      background-color: #ddd;
     }
   </style>
 </head>
@@ -43,9 +38,9 @@
   <h1>Citations</h1>
   <div id="citations-container"></div>
   <div id="pagination-controls">
-    <button id="prev-page" class="page-button" disabled>Previous</button>
-    <span id="current-page">Page 1</span>
-    <button id="next-page" class="page-button">Next</button>
+    <button id="prev-page" disabled>Previous</button>
+    <span id="page-info">Page 1</span>
+    <button id="next-page">Next</button>
   </div>
   <script src="script.js"></script>
 </body>
