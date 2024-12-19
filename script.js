@@ -28,16 +28,17 @@ function renderPage(page) {
     const citationDiv = document.createElement('div');
     citationDiv.className = 'citation';
 
-    const title = document.createElement('div');
-    title.className = 'citation-title';
-    title.textContent = entry.title || 'No Title';
+   // Create the title element with a link
+   const title = document.createElement('div');
+   title.className = 'citation-title';
+   title.innerHTML = `<a href="${entry.url || '#'}" target="_blank">${entry.title || 'No Title'}</a>`;
+
 
     const details = document.createElement('div');
     details.className = 'citation-details';
     details.innerHTML = `
   ${entry.author || 'Unknown'}<br>
     ${entry.isPartOf || 'Unknown'} (${entry.publicationYear || 'N/A'})<br>
-      <a href="${entry.url || '#'}" target="_blank">Read Article</a>
     `;
 
     citationDiv.appendChild(title);
