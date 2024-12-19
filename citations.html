@@ -10,23 +10,25 @@
   <style>
     body {
       font-family: "Kode Mono", serif;
-background: #fff;
+      background: #fff;
       margin: 20px;
     }
     .citation {
       margin-bottom: 20px;
       padding: 10px;
-  
     }
     .citation-title {
       font-size: 1em;
- 
     }
     .citation-details {
       font-size: 1em;
       color: #521E11;
     }
-    a{    color: #521E11;text-decoration: underline dashed;text-transform: uppercase;}
+    a {
+      color: #521E11;
+      text-decoration: underline dashed;
+      text-transform: uppercase;
+    }
     #pagination-controls {
       margin-top: 20px;
       display: flex;
@@ -37,16 +39,39 @@ background: #fff;
       padding: 5px 10px;
       font-size: 1em;
     }
+    #filter-controls {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    #year-filter {
+      padding: 5px;
+      font-size: 1em;
+    }
   </style>
 </head>
 <body>
+  <!-- Filter Controls -->
+  <div id="filter-controls">
+    <label for="year-filter">Filter by Year:</label>
+    <select id="year-filter">
+      <option value="">All Years</option>
+      <!-- Year options will be dynamically populated -->
+    </select>
+  </div>
 
+  <!-- Citations Container -->
   <div id="citations-container"></div>
+
+  <!-- Pagination Controls -->
   <div id="pagination-controls">
     <button id="prev-page" disabled>Previous</button>
     <span id="page-info">Page 1</span>
     <button id="next-page">Next</button>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
