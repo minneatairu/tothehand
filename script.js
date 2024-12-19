@@ -37,7 +37,7 @@ function renderPage(page) {
     const details = document.createElement('div');
     details.className = 'citation-details';
     details.innerHTML = `
-  ${entry.author || 'Unknown'}<br>
+  ${entry.author || 'Unknown'},
     ${entry.isPartOf || 'Unknown'} (${entry.publicationYear || 'N/A'})<br>
     `;
 
