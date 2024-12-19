@@ -9,8 +9,8 @@ fetch('justice.json')
   .then(data => {
     allCitations = data; // Save data for pagination
     filteredCitations = allCitations; // Initially, show all citations
-    renderPage(currentPage); // Render the first page
     populateYearFilter(); // Populate the year filter dropdown
+    renderPage(currentPage); // Render the first page
   })
   .catch(error => {
     console.error('Error loading JSON:', error);
@@ -64,14 +64,17 @@ function updatePaginationControls(page) {
 
 // Function to populate the year filter dropdown
 function populateYearFilter() {
+  // Extract unique years from the citations data
   const years = [...new Set(allCitations.map(entry => entry.publicationYear).filter(Boolean))].sort();
   const yearFilter = document.getElementById('year-filter');
 
+  // Add a default "All Years" option
   const allOption = document.createElement('option');
   allOption.value = '';
   allOption.textContent = 'All Years';
   yearFilter.appendChild(allOption);
 
+  // Add options for each year
   years.forEach(year => {
     const option = document.createElement('option');
     option.value = year;
@@ -84,9 +87,11 @@ function populateYearFilter() {
 document.getElementById('year-filter').addEventListener('change', event => {
   const selectedYear = event.target.value;
   if (selectedYear) {
+    // Filter citations by the selected year
     filteredCitations = allCitations.filter(entry => entry.publicationYear === selectedYear);
   } else {
-    filteredCitations = allCitations; // Reset to all citations
+    // Reset to all citations if no year is selected
+    filteredCitations = allCitations;
   }
   currentPage = 1; // Reset to the first page
   renderPage(currentPage);
