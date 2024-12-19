@@ -1,6 +1,6 @@
 let allCitations = []; // To store all the loaded citations
 let currentPage = 1; // Current page number
-const itemsPerPage = 10; // Number of citations per page
+const itemsPerPage = 15; // Number of citations per page
 
 // Load the JSON file
 fetch('justice.json')
