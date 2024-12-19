@@ -37,7 +37,6 @@ function renderPage(page) {
     details.innerHTML = `
   ${entry.author || 'Unknown'}<br>
     ${entry.isPartOf || 'Unknown'} (${entry.publicationYear || 'N/A'})<br>
-    ${entry.datePublished || 'N/A'}<br>
       <a href="${entry.url || '#'}" target="_blank">Read Article</a>
     `;
 
