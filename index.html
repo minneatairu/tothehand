@@ -30,6 +30,12 @@
       align-items: center;
       font-size: 2rem;
       z-index: 1000;
+      flex-direction: column;
+    }
+
+    .word {
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
     }
 
     #main-content {
@@ -39,7 +45,7 @@
 </head>
 <body>
   <!-- Loading Screen -->
-  <div id="loading-screen">According to Benin oral history, the walls of Benin are made of three concentric circles.</div>
+  <div id="loading-screen"></div>
 
   <!-- Main Content -->
   <div id="main-content">
@@ -82,12 +88,53 @@
   </div>
 
   <script>
-    // Hide loading screen and show main content after 15 seconds
+    // Words to display one after another
+    const words = [
+      "According",
+      "to",
+      "Benin",
+      "oral",
+      "history,",
+      "the",
+      "walls",
+      "of",
+      "Benin",
+      "are",
+      "made",
+      "of",
+      "three",
+      "concentric",
+      "circles."
+    ];
+
+    const loadingScreen = document.getElementById('loading-screen');
+
+    let wordIndex = 0;
+    words.forEach((word, index) => {
+      const span = document.createElement('span');
+      span.textContent = word;
+      span.className = 'word';
+      loadingScreen.appendChild(span);
+      if (index < words.length - 1) {
+        loadingScreen.appendChild(document.createTextNode(' '));
+      }
+    });
+
+    function showWords() {
+      const wordElements = document.querySelectorAll('.word');
+      wordElements.forEach((word, index) => {
+        setTimeout(() => {
+          word.style.opacity = 1;
+        }, index * 1000); // Show each word after 1 second
+      });
+    }
+
     window.onload = function() {
+      showWords();
       setTimeout(() => {
-        document.getElementById('loading-screen').style.display = 'none';
+        loadingScreen.style.display = 'none';
         document.getElementById('main-content').style.display = 'block';
-      }, 15000);
+      }, words.length * 1000 + 2000); // Extra 2 seconds after last word
     };
   </script>
 </body>
