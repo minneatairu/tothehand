@@ -8,48 +8,87 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Kode+Mono:wght@400..700&family=Xanh+Mono:ital@0;1&display=swap" rel="stylesheet">
- 
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'IBM Plex Mono', monospace;
+      overflow: hidden;
+    }
+
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      z-index: 1000;
+    }
+
+    #main-content {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-  <!-- Video Section -->
-  <video id="background-video" autoplay muted loop>
-    <source src="vv.mov" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+  <!-- Loading Screen -->
+  <div id="loading-screen">According to Benin oral history</div>
 
-  <!-- Top-right buttons -->
-  <div class="top-right-buttons">
-    <button class="button" id="aboutButton">?</button>
-    <button class="button" id="sculptureButton">Sculpture<sup>( 3D, AI )</sup></button>
-    <button class="button" id="btsButton">BTS<sup>( TV )</sup></button>
-    <button class="button" id="citationsButton">Citations<sup>( APA )</sup></button>
+  <!-- Main Content -->
+  <div id="main-content">
+    <!-- Video Section -->
+    <video id="background-video" autoplay muted loop>
+      <source src="vv.mov" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
 
-  </div>
-  
+    <!-- Top-right buttons -->
+    <div class="top-right-buttons">
+      <button class="button" id="aboutButton">?</button>
+      <button class="button" id="sculptureButton">Sculpture<sup>( 3D, AI )</sup></button>
+      <button class="button" id="btsButton">BTS<sup>( TV )</sup></button>
+      <button class="button" id="citationsButton">Citations<sup>( APA )</sup></button>
+    </div>
 
-  <!-- Citations Modal -->
-  <div id="citationsModal" class="modal">
-    <div class="modal-content">
-      <span class="close" id="closeCitations">&times;</span>
-      <h2>Citations</h2>
-      <div id="citations-container"></div>
-      <div class="pagination">
-        <button id="prev-page">Previous</button>
-        <span id="page-info"></span>
-        <button id="next-page">Next</button>
+    <!-- Citations Modal -->
+    <div id="citationsModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeCitations">&times;</span>
+        <h2>Citations</h2>
+        <div id="citations-container"></div>
+        <div class="pagination">
+          <button id="prev-page">Previous</button>
+          <span id="page-info"></span>
+          <button id="next-page">Next</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- About Modal -->
+    <div id="aboutModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeAbout">&times;</span>
+        <h2>About</h2>
+        <p>This is the About information for your website.</p>
       </div>
     </div>
   </div>
 
-  <!-- About Modal -->
-  <div id="aboutModal" class="modal">
-    <div class="modal-content">
-      <span class="close" id="closeAbout">&times;</span>
-      <h2>About</h2>
-      <p>This is the About information for your website.</p>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
+  <script>
+    // Hide loading screen and show main content after 15 seconds
+    window.onload = function() {
+      setTimeout(() => {
+        document.getElementById('loading-screen').style.display = 'none';
+        document.getElementById('main-content').style.display = 'block';
+      }, 15000);
+    };
+  </script>
 </body>
 </html>
