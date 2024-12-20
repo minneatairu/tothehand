@@ -1,29 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Right Buttons</title>
-    <!-- Link to CSS -->
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Citations and About</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Top Right Buttons -->
-    <div class="top-right-buttons">
-        <a href="citations.html" class="button">Citations</a>
-        <button class="button" id="aboutButton">About</button>
-    </div>
+  <!-- Top-right buttons -->
+  <div class="top-right-buttons">
+    <button class="button" id="citationsButton">Citations</button>
+    <button class="button" id="aboutButton">About</button>
+  </div>
 
-    <!-- About Modal -->
-    <div id="aboutModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>About</h2>
-            <p>This is the About information for your website.</p>
-        </div>
+  <!-- Citations Modal -->
+  <div id="citationsModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeCitations">&times;</span>
+      <h2>Citations</h2>
+      <div id="citations-container"></div>
+      <div class="pagination">
+        <button id="prev-page">Previous</button>
+        <span id="page-info"></span>
+        <button id="next-page">Next</button>
+      </div>
     </div>
+  </div>
 
-    <!-- Link to JavaScript -->
-    <script src="script.js"></script>
+  <!-- About Modal -->
+  <div id="aboutModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeAbout">&times;</span>
+      <h2>About</h2>
+      <p>This is the About information for your website.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
