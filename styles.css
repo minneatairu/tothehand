@@ -85,9 +85,10 @@ button {
 }
 #background-video {
   width: 100vw; /* Adjust to your desired size */
-  height: auto; /* Maintain aspect ratio */
-  display: block; /* Ensures no unexpected inline gap */
-  margin: 0 auto; /* Center the video if needed */
+  height: 100vh;
+  display: block;
+  margin: 0 auto;
+  object-fit: cover;
   z-index: -1; /* Position behind other content if required */
 }
 
