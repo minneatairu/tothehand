@@ -18,27 +18,23 @@ function renderPage(page) {
   const container = document.getElementById('citations-container');
   container.innerHTML = ''; // Clear the container
 
-  // Calculate start and end indices for the current pagex
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = Math.min(startIndex + itemsPerPage, allCitations.length);
 
-  // Render citations for the current page
   for (let i = startIndex; i < endIndex; i++) {
     const entry = allCitations[i];
     const citationDiv = document.createElement('div');
     citationDiv.className = 'citation';
 
-   // Create the title element with a link
-   const title = document.createElement('div');
-   title.className = 'citation-title';
-   title.innerHTML = `<a href="${entry.url || '#'}" target="_blank">${entry.title || 'No Title'}</a>`;
-
+    const title = document.createElement('div');
+    title.className = 'citation-title';
+    title.innerHTML = `<a href="${entry.url || '#'}" target="_blank">${entry.title || 'No Title'}</a>`;
 
     const details = document.createElement('div');
     details.className = 'citation-details';
     details.innerHTML = `
-  ${entry.author || 'Unknown'}<br>
-    ${entry.isPartOf || 'Unknown'} (${entry.publicationYear || 'N/A'})<br>
+      ${entry.author || 'Unknown'}<br>
+      ${entry.isPartOf || 'Unknown'} (${entry.publicationYear || 'N/A'})<br>
     `;
 
     citationDiv.appendChild(title);
@@ -46,7 +42,6 @@ function renderPage(page) {
     container.appendChild(citationDiv);
   }
 
-  // Update pagination controls
   updatePaginationControls(page);
 }
 
@@ -55,7 +50,6 @@ function updatePaginationControls(page) {
   const totalPages = Math.ceil(allCitations.length / itemsPerPage);
   document.getElementById('page-info').textContent = `Page ${page} of ${totalPages}`;
 
-  // Enable or disable buttons based on current page
   document.getElementById('prev-page').disabled = page === 1;
   document.getElementById('next-page').disabled = page === totalPages;
 }
@@ -73,5 +67,37 @@ document.getElementById('next-page').addEventListener('click', () => {
   if (currentPage < totalPages) {
     currentPage++;
     renderPage(currentPage);
+  }
+});
+
+// Modal functionality
+const citationsModal = document.getElementById('citationsModal');
+const aboutModal = document.getElementById('aboutModal');
+const citationsButton = document.getElementById('citationsButton');
+const aboutButton = document.getElementById('aboutButton');
+const closeCitations = document.getElementById('closeCitations');
+const closeAbout = document.getElementById('closeAbout');
+
+citationsButton.addEventListener('click', () => {
+  citationsModal.style.display = 'block';
+});
+
+aboutButton.addEventListener('click', () => {
+  aboutModal.style.display = 'block';
+});
+
+closeCitations.addEventListener('click', () => {
+  citationsModal.style.display = 'none';
+});
+
+closeAbout.addEventListener('click', () => {
+  aboutModal.style.display = 'none';
+});
+
+window.addEventListener('click', (event) => {
+  if (event.target === citationsModal) {
+    citationsModal.style.display = 'none';
+  } else if (event.target === aboutModal) {
+    aboutModal.style.display = 'none';
   }
 });
