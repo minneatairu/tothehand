@@ -24,7 +24,7 @@
 body {
   font-family: "Kode Mono", serif;
   background: #fff;
-  margin: 20px;
+  margin: 0;
 }
 .citation {
   margin-bottom: 20px;
@@ -84,7 +84,7 @@ button {
   border-radius: 5px;
 }
 #background-video {
-  width: 100%; /* Adjust to your desired size */
+  width: 100vw; /* Adjust to your desired size */
   height: auto; /* Maintain aspect ratio */
   display: block; /* Ensures no unexpected inline gap */
   margin: 0 auto; /* Center the video if needed */
