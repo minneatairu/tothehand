@@ -6,7 +6,7 @@
   display: flex;
   gap: 10px;
 }
-p{ color: #521E11;}
+p{ color: #521E11!important;}
 .button {
   padding: 10px 15px;
   border: none;
