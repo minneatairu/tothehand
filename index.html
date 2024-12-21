@@ -28,12 +28,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
       font-size: 2rem;
       z-index: 1000;
     }
 
-    .word {
+    #loading-screen span {
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.8s ease, transform 0.8s ease;
@@ -113,7 +112,6 @@
     words.forEach((word, index) => {
       const span = document.createElement('span');
       span.textContent = word;
-      span.className = 'word';
       loadingScreen.appendChild(span);
       if (index < words.length - 1) {
         loadingScreen.appendChild(document.createTextNode(' '));
@@ -121,12 +119,12 @@
     });
 
     function showWords() {
-      const wordElements = document.querySelectorAll('.word');
+      const wordElements = document.querySelectorAll('#loading-screen span');
       wordElements.forEach((word, index) => {
         setTimeout(() => {
           word.style.opacity = 1;
           word.style.transform = 'translateY(0)';
-        }, index * 400); // Faster, cinematic transitions
+        }, index * 300); // Faster, cinematic transitions
       });
     }
 
@@ -135,7 +133,7 @@
       setTimeout(() => {
         loadingScreen.style.display = 'none';
         document.getElementById('main-content').style.display = 'block';
-      }, words.length * 400 + 1000); // Short pause after the last word
+      }, words.length * 300 + 1000); // Short pause after the last word
     };
   </script>
 </body>
