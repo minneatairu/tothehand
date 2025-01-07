@@ -17,6 +17,10 @@ p{ color: #521E11!important;}
   font-size: 14px;text-transform: uppercase;
   cursor: pointer;  font-family: "Kode Mono", serif;
 }
+.index {
+  font-weight: bold;
+  margin-right: 10px; // Add some space between the index and the title
+}
 
 
 body {

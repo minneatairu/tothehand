@@ -31,9 +31,16 @@ function renderPage(page) {
   const endIndex = Math.min(startIndex + itemsPerPage, allCitations.length);
 
   for (let i = startIndex; i < endIndex; i++) {
+    const index = i + 1; // Calculate the index number for display
     const entry = allCitations[i];
     const citationDiv = document.createElement('div');
     citationDiv.className = 'citation';
+
+    // Index number for the citation
+    const indexDiv = document.createElement('div');
+    indexDiv.className = 'index';
+    indexDiv.textContent = index + '.'; // Display index with a period
+    citationDiv.appendChild(indexDiv);
 
     // Creating and appending the article title with a link
     const titleDiv = document.createElement('div');
@@ -70,6 +77,7 @@ function renderPage(page) {
 
   updatePaginationControls(page); // Update pagination controls based on the new page
 }
+
 
 
 
