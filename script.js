@@ -41,7 +41,7 @@ function renderPage(page) {
     // Create and append the publication year
     const yearDiv = document.createElement('div');
     yearDiv.className = 'year';
-    yearDiv.textContent = entry.year || 'N/A';
+    yearDiv.textContent = entry.publicationYear || 'N/A';
     citationDiv.appendChild(yearDiv);
 
     // Append the complete citation div to the container
