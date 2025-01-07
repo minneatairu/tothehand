@@ -35,17 +35,21 @@ function renderPage(page) {
     const citationDiv = document.createElement('div');
     citationDiv.className = 'citation';
 
-    // Journal name and title link
-    const journalDiv = document.createElement('div');
-    journalDiv.className = 'journal';
-
-    // Create an anchor element for the title
+    // Creating and appending the article title with a link
+    const titleDiv = document.createElement('div');
+    titleDiv.className = 'title';
     const titleLink = document.createElement('a');
     titleLink.href = entry.url || '#'; // Use the URL from the entry or fallback to '#' if none provided
     titleLink.textContent = truncateTitle(entry.title) || 'No Title Available';
     titleLink.target = "_blank"; // Opens the link in a new tab
-    journalDiv.appendChild(titleLink);
+    titleLink.rel = "noopener noreferrer"; // Security measure for links opening in a new tab
+    titleDiv.appendChild(titleLink);
+    citationDiv.appendChild(titleDiv);
 
+    // Creating and appending the journal name
+    const journalDiv = document.createElement('div');
+    journalDiv.className = 'journal';
+    journalDiv.textContent = entry.isPartOf || 'Unknown Journal';
     citationDiv.appendChild(journalDiv);
 
     // Author's name
@@ -66,6 +70,7 @@ function renderPage(page) {
 
   updatePaginationControls(page); // Update pagination controls based on the new page
 }
+
 
 
 
