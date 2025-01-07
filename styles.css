@@ -44,7 +44,7 @@ body {
 }
 a {
   color: #521E11;
-  text-decoration: underline dashed;
+  text-decoration: none;
   text-transform: uppercase;
 }
 #pagination-controls {

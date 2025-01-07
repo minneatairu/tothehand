@@ -38,7 +38,7 @@ fetch('justice.json')
       // Index number for the citation
       const indexDiv = document.createElement('div');
       indexDiv.className = 'index';
-      indexDiv.textContent = index + '.'; // Display index with a period
+      indexDiv.textContent = index; // Display index with a period
       citationDiv.appendChild(indexDiv);
   
       // Wrapper div for title, journal, and author
