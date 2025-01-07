@@ -35,19 +35,26 @@ function renderPage(page) {
     const citationDiv = document.createElement('div');
     citationDiv.className = 'citation';
 
-    // Creating and appending journal name with truncated title
+    // Journal name and title link
     const journalDiv = document.createElement('div');
     journalDiv.className = 'journal';
-    journalDiv.textContent = truncateTitle(entry.title) || 'No Title Available'; // Use truncate function
+
+    // Create an anchor element for the title
+    const titleLink = document.createElement('a');
+    titleLink.href = entry.url || '#'; // Use the URL from the entry or fallback to '#' if none provided
+    titleLink.textContent = truncateTitle(entry.title) || 'No Title Available';
+    titleLink.target = "_blank"; // Opens the link in a new tab
+    journalDiv.appendChild(titleLink);
+
     citationDiv.appendChild(journalDiv);
 
-    // Creating and appending author's name
+    // Author's name
     const authorDiv = document.createElement('div');
     authorDiv.className = 'author';
     authorDiv.textContent = entry.author || 'Unknown Author';
     citationDiv.appendChild(authorDiv);
 
-    // Creating and appending publication year
+    // Publication year
     const yearDiv = document.createElement('div');
     yearDiv.className = 'year';
     yearDiv.textContent = entry.publicationYear || 'N/A';
@@ -59,6 +66,7 @@ function renderPage(page) {
 
   updatePaginationControls(page); // Update pagination controls based on the new page
 }
+
 
 
 
