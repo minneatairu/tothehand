@@ -13,6 +13,15 @@ fetch('justice.json')
     console.error('Error loading JSON:', error);
   });
 
+  function truncateTitle(title) {
+    const wordLimit = 5; // Set the limit of words
+    const words = title.split(' '); // Split the title into words
+    if (words.length > wordLimit) {
+      return words.slice(0, wordLimit).join(' ') + '...'; // Join the first five words and add ellipsis
+    }
+    return title; // Return the original title if it's within the limit
+  }
+  
 // Function to render a specific page
 function renderPage(page) {
   const container = document.getElementById('citations-container');
@@ -26,10 +35,10 @@ function renderPage(page) {
     const citationDiv = document.createElement('div');
     citationDiv.className = 'citation';
 
-    // Creating and appending journal name
+    // Creating and appending journal name with truncated title
     const journalDiv = document.createElement('div');
     journalDiv.className = 'journal';
-    journalDiv.textContent = entry.isPartOf || 'Unknown Journal';
+    journalDiv.textContent = truncateTitle(entry.title) || 'No Title Available'; // Use truncate function
     citationDiv.appendChild(journalDiv);
 
     // Creating and appending author's name
@@ -50,6 +59,7 @@ function renderPage(page) {
 
   updatePaginationControls(page); // Update pagination controls based on the new page
 }
+
 
 
 
