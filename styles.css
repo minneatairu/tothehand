@@ -24,7 +24,8 @@ body {
   background: #fff;
   margin: 0;
 }
-.citation {
+.citation {color:#521E11;
+  display: flex;align-content: space-between;
   margin-bottom: 20px;
   padding: 10px;
 }
