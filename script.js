@@ -22,62 +22,68 @@ fetch('justice.json')
     return title; // Return the original title if it's within the limit
   }
   
-// Function to render a specific page
-function renderPage(page) {
-  const container = document.getElementById('citations-container');
-  container.innerHTML = ''; // Clear the container before rendering new content
-
-  const startIndex = (page - 1) * itemsPerPage;
-  const endIndex = Math.min(startIndex + itemsPerPage, allCitations.length);
-
-  for (let i = startIndex; i < endIndex; i++) {
-    const index = i + 1; // Calculate the index number for display
-    const entry = allCitations[i];
-    const citationDiv = document.createElement('div');
-    citationDiv.className = 'citation';
-
-    // Index number for the citation
-    const indexDiv = document.createElement('div');
-    indexDiv.className = 'index';
-    indexDiv.textContent = index ; // Display index with a period
-    citationDiv.appendChild(indexDiv);
-
-    // Creating and appending the article title with a link
-    const titleDiv = document.createElement('div');
-    titleDiv.className = 'title';
-    const titleLink = document.createElement('a');
-    titleLink.href = entry.url || '#'; // Use the URL from the entry or fallback to '#' if none provided
-    titleLink.textContent = truncateTitle(entry.title) || 'No Title Available';
-    titleLink.target = "_blank"; // Opens the link in a new tab
-    titleLink.rel = "noopener noreferrer"; // Security measure for links opening in a new tab
-    titleDiv.appendChild(titleLink);
-    citationDiv.appendChild(titleDiv);
-
-    // Creating and appending the journal name
-    const journalDiv = document.createElement('div');
-    journalDiv.className = 'journal';
-    journalDiv.textContent = entry.isPartOf || 'Unknown Journal';
-    citationDiv.appendChild(journalDiv);
-
-    // Author's name
-    const authorDiv = document.createElement('div');
-    authorDiv.className = 'author';
-    authorDiv.textContent = entry.author || 'Unknown Author';
-    citationDiv.appendChild(authorDiv);
-
-    // Publication year
-    const yearDiv = document.createElement('div');
-    yearDiv.className = 'year';
-    yearDiv.textContent = entry.publicationYear || 'N/A';
-    citationDiv.appendChild(yearDiv);
-
-    // Append the complete citation div to the container
-    container.appendChild(citationDiv);
+  function renderPage(page) {
+    const container = document.getElementById('citations-container');
+    container.innerHTML = ''; // Clear the container before rendering new content
+  
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = Math.min(startIndex + itemsPerPage, allCitations.length);
+  
+    for (let i = startIndex; i < endIndex; i++) {
+      const index = i + 1; // Calculate the index number for display
+      const entry = allCitations[i];
+      const citationDiv = document.createElement('div');
+      citationDiv.className = 'citation';
+  
+      // Index number for the citation
+      const indexDiv = document.createElement('div');
+      indexDiv.className = 'index';
+      indexDiv.textContent = index + '.'; // Display index with a period
+      citationDiv.appendChild(indexDiv);
+  
+      // Wrapper div for title, journal, and author
+      const contentDiv = document.createElement('div');
+      contentDiv.className = 'content';
+  
+      // Creating and appending the article title with a link
+      const titleDiv = document.createElement('div');
+      titleDiv.className = 'title';
+      const titleLink = document.createElement('a');
+      titleLink.href = entry.url || '#'; // Use the URL from the entry or fallback to '#' if none provided
+      titleLink.textContent = truncateTitle(entry.title) || 'No Title Available';
+      titleLink.target = "_blank"; // Opens the link in a new tab
+      titleLink.rel = "noopener noreferrer"; // Security measure for links opening in a new tab
+      titleDiv.appendChild(titleLink);
+      contentDiv.appendChild(titleDiv);
+  
+      // Creating and appending the journal name
+      const journalDiv = document.createElement('div');
+      journalDiv.className = 'journal';
+      journalDiv.textContent = entry.isPartOf || 'Unknown Journal';
+      contentDiv.appendChild(journalDiv);
+  
+      // Author's name
+      const authorDiv = document.createElement('div');
+      authorDiv.className = 'author';
+      authorDiv.textContent = entry.author || 'Unknown Author';
+      contentDiv.appendChild(authorDiv);
+  
+      // Append content div to the citation div
+      citationDiv.appendChild(contentDiv);
+  
+      // Publication year
+      const yearDiv = document.createElement('div');
+      yearDiv.className = 'year';
+      yearDiv.textContent = entry.publicationYear || 'N/A';
+      citationDiv.appendChild(yearDiv);
+  
+      // Append the complete citation div to the container
+      container.appendChild(citationDiv);
+    }
+  
+    updatePaginationControls(page); // Update pagination controls based on the new page
   }
-
-  updatePaginationControls(page); // Update pagination controls based on the new page
-}
-
+  
 
 
 
