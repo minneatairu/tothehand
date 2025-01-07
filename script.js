@@ -35,10 +35,10 @@ fetch('justice.json')
       const citationDiv = document.createElement('div');
       citationDiv.className = 'citation';
   
-      // Index number for the citation
+      // Index number for the citation, formatted as a three-digit number
       const indexDiv = document.createElement('div');
       indexDiv.className = 'index';
-      indexDiv.textContent = index; // Display index with a period
+      indexDiv.textContent = index.toString().padStart(3, '0') + '.'; // Format index with leading zeros and add a period
       citationDiv.appendChild(indexDiv);
   
       // Wrapper div for title, journal, and author
