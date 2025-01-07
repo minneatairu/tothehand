@@ -16,7 +16,7 @@ fetch('justice.json')
 // Function to render a specific page
 function renderPage(page) {
   const container = document.getElementById('citations-container');
-  container.innerHTML = ''; // Clear the container
+  container.innerHTML = ''; // Clear the container before rendering new content
 
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = Math.min(startIndex + itemsPerPage, allCitations.length);
@@ -26,24 +26,31 @@ function renderPage(page) {
     const citationDiv = document.createElement('div');
     citationDiv.className = 'citation';
 
-    const title = document.createElement('div');
-    title.className = 'citation-title';
-    title.innerHTML = `<a href="${entry.url || '#'}" target="_blank">${entry.title || 'No Title'}</a>`;
+    // Create and append the journal title
+    const journalDiv = document.createElement('div');
+    journalDiv.className = 'journal';
+    journalDiv.textContent = entry.title || '[Unknown Publication]';
+    citationDiv.appendChild(journalDiv);
 
-    const details = document.createElement('div');
-    details.className = 'citation-details';
-    details.innerHTML = `
-      ${entry.author || 'Unknown'}<br>
-      ${entry.isPartOf || 'Unknown'} (${entry.publicationYear || 'N/A'})<br>
-    `;
+    // Create and append the author's name
+    const authorDiv = document.createElement('div');
+    authorDiv.className = 'author';
+    authorDiv.textContent = entry.author || 'Unknown Author';
+    citationDiv.appendChild(authorDiv);
 
-    citationDiv.appendChild(title);
-    citationDiv.appendChild(details);
+    // Create and append the publication year
+    const yearDiv = document.createElement('div');
+    yearDiv.className = 'year';
+    yearDiv.textContent = entry.year || 'N/A';
+    citationDiv.appendChild(yearDiv);
+
+    // Append the complete citation div to the container
     container.appendChild(citationDiv);
   }
 
-  updatePaginationControls(page);
+  updatePaginationControls(page); // Update pagination controls based on the new page
 }
+
 
 // Function to update pagination controls
 function updatePaginationControls(page) {
