@@ -28,7 +28,7 @@ body {
 }
 .citation {color:#521E11;
   display: flex;justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 3rem;
   padding: 10px;
 }
 .citation-title {
