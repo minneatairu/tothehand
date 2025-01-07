@@ -44,6 +44,12 @@ fetch('justice.json')
       // Wrapper div for title, journal, and author
       const contentDiv = document.createElement('div');
       contentDiv.className = 'content';
+
+         // Creating and appending the journal name
+         const journalDiv = document.createElement('div');
+         journalDiv.className = 'journal';
+         journalDiv.textContent = entry.isPartOf || 'Unknown Journal';
+         contentDiv.appendChild(journalDiv);
   
       // Creating and appending the article title with a link
       const titleDiv = document.createElement('div');
@@ -56,11 +62,7 @@ fetch('justice.json')
       titleDiv.appendChild(titleLink);
       contentDiv.appendChild(titleDiv);
   
-      // Creating and appending the journal name
-      const journalDiv = document.createElement('div');
-      journalDiv.className = 'journal';
-      journalDiv.textContent = entry.isPartOf || 'Unknown Journal';
-      contentDiv.appendChild(journalDiv);
+   
   
       // Author's name
       const authorDiv = document.createElement('div');

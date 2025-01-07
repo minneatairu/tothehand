@@ -22,7 +22,9 @@ p{ color: #521E11!important;}
   margin-right: 10px;
 }
 
+div.title{font-size: 3vw;}
 
+div.content{text-align: center;}
 body {
   font-family: "Kode Mono", serif;
   background: #fff;
