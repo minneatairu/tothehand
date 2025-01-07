@@ -26,19 +26,19 @@ function renderPage(page) {
     const citationDiv = document.createElement('div');
     citationDiv.className = 'citation';
 
-    // Create and append the journal title
+    // Creating and appending journal name
     const journalDiv = document.createElement('div');
     journalDiv.className = 'journal';
-    journalDiv.textContent = entry.title || '[Unknown Publication]';
+    journalDiv.textContent = entry.isPartOf || 'Unknown Journal';
     citationDiv.appendChild(journalDiv);
 
-    // Create and append the author's name
+    // Creating and appending author's name
     const authorDiv = document.createElement('div');
     authorDiv.className = 'author';
     authorDiv.textContent = entry.author || 'Unknown Author';
     citationDiv.appendChild(authorDiv);
 
-    // Create and append the publication year
+    // Creating and appending publication year
     const yearDiv = document.createElement('div');
     yearDiv.className = 'year';
     yearDiv.textContent = entry.publicationYear || 'N/A';
@@ -50,6 +50,7 @@ function renderPage(page) {
 
   updatePaginationControls(page); // Update pagination controls based on the new page
 }
+
 
 
 // Function to update pagination controls
