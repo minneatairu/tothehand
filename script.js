@@ -64,11 +64,13 @@ fetch('justice.json')
   
    
   
-      // Author's name
-      const authorDiv = document.createElement('div');
-      authorDiv.className = 'author';
-      authorDiv.textContent = entry.author || 'Unknown Author';
-      contentDiv.appendChild(authorDiv);
+ // Author's name with brackets
+const authorDiv = document.createElement('div');
+authorDiv.className = 'author';
+// Check if author data exists and format it with brackets, otherwise show "Unknown Author"
+authorDiv.textContent = entry.author ? `(${entry.author})` : '(Unknown Author)';
+contentDiv.appendChild(authorDiv);
+
   
       // Append content div to the citation div
       citationDiv.appendChild(contentDiv);
