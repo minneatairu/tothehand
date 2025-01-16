@@ -13,6 +13,14 @@
     }
 body{margin: 0;}
 
+
+    /* First Column: Fixed Video */
+    .grid-item.fixed {
+      position: sticky;
+      top: 20px; /* Adjust to create spacing from the top */
+      align-self: start; /* Ensures proper alignment */
+    }
+
     video {
       display: block;
       margin: 20px auto;
@@ -38,16 +46,15 @@ div.one{padding: 12%;}
       color: black;
     }
 
-        /* Scrollable Second Column */
-        .scrollable {
-      position: sticky; /* Sticks in place while scrolling */
-      top: 0; /* Start sticking from the top of the viewport */
-      height: calc(100vh - 40px); /* Full height minus padding or margins */
-      overflow-y: auto; /* Vertical scrolling */
-      background-color: #f9f9f9;
-      padding: 20px;
+    /* Second Column: Scrollable Text */
+    .grid-item.scrollable {
+      overflow-y: auto; /* Enable vertical scrolling */
+      height: calc(100vh - 40px); /* Adjust height to fit the viewport */
       border: 1px solid #ddd;
+      padding: 20px;
+      background-color: #f9f9f9;
     }
+
   </style>
 </head>
 <body>
