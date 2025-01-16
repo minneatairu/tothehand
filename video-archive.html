@@ -1,31 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To The Hand by Minne</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Grid Example</title>
+  <style>
+    .grid-container {
+      display: grid;
+      grid-template-columns: 3fr 1fr; /* First column is 3 times larger */
+      gap: 10px; /* Space between grid items */
+      padding: 20px;
+    }
+
+    .grid-item {
+      border: 1px solid #ddd;
+      padding: 20px;
+      text-align: center;
+      background-color: #f4f4f4;
+    }
+  </style>
 </head>
 <body>
-
-    <div class="archive-container">
-  
-            <span class="archive-ticker">[CH4] Culture - Sounds Of The West - Straight Outa Bristol (Wild Bunch/Massive Attack/Tricky/Portishead) - Culture - Sounds Of The West</span>
-   
-        <div class="archive-video-section">
-            <img src="video_frame.jpg" alt="Video Thumbnail">
-            <div class="archive-caption">Fremantle</div>
-        </div>
-        <div class="archive-text-section">
-            <h1>Martine Rose</h1>
-            <p>MARTINE ROSE & INTERNATIONAL MAGIC present OUR CHANNEL: A tribute to IDENTITY FORMATION, STYLE and CONNECTION in the decades before the internet reimagined it all.</p>
-            <img src="phone_image.jpg" alt="Phone Image">
-            <p>Beginning on 16th October 2023, OUR CHANNEL will broadcast five LIVE stations dedicated to pivotal moments spanning STYLE, MUSIC, FILM, CULTURE and NEWS, as selected by Martine Rose and friends.</p>
-            <div class="archive-buttons">
-                <button>&uarr;</button>
-                <button>&darr;</button>
-            </div>
-        </div>
-    </div>
+  <div class="grid-container">
+    <div class="grid-item">Column 1, Row 1</div>
+    <div class="grid-item">Column 2, Row 1</div>
+  </div>
 </body>
 </html>
