@@ -42,6 +42,17 @@ div.one{padding: 12%;}
       line-height: 40px;
       color: black;
     }
+
+        /* Scrollable Second Column */
+        .scrollable {
+      position: sticky; /* Sticks in place while scrolling */
+      top: 0; /* Start sticking from the top of the viewport */
+      height: calc(100vh - 40px); /* Full height minus padding or margins */
+      overflow-y: auto; /* Vertical scrolling */
+      background-color: #f9f9f9;
+      padding: 20px;
+      border: 1px solid #ddd;
+    }
   </style>
 </head>
 <body>
@@ -66,8 +77,22 @@ div.one{padding: 12%;}
     <!-- Second Column -->
     <div class="grid-item">
       Column 2, Row 1
-      <div class="scrollable text">
-        Our Channel revives a lost culture using modern tools, a time capsule of how life felt when SSENSE was born. This was the era of landlines, fanzines, peer-to-peer downloads, pirate radio and TV shows like The Word, Network 21 and Dance Energy.
+      <div class="grid-item scrollable">
+        <h3>Our Channel Text</h3>
+        <p>
+          Our Channel revives a lost culture using modern tools, a time capsule of how life felt when SSENSE was born. 
+          This was the era of landlines, fanzines, peer-to-peer downloads, pirate radio and TV shows like The Word, Network 21, and Dance Energy.
+        </p>
+        <p>
+          This narrative continues as we dive deeper into the evolution of culture through the lens of creativity, collaboration, and identity. 
+          Join us as we reimagine pivotal moments and celebrate their lasting impact on modern culture.
+        </p>
+        <p>
+          Beginning in 2023, this project will also host curated playlists, digital archives, and exclusive interviews to bridge the past with the present.
+        </p>
+        <p>
+          Additional content... (Add as much text as you need, it will remain scrollable!)
+        </p>
       </div>
     </div>
   </div>
