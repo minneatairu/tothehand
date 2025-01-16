@@ -18,45 +18,40 @@
     }
 
     .ticker {
-      overflow: hidden;
-      white-space: nowrap;
-      box-sizing: border-box;
-      display: block;
-      background-color: #f4f4f4;
-      color: black;
-      font-size: 18px;
-      border: 1px solid #ddd;
-    }
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+  display: block;
+  background-color: #f4f4f4;
+  color: black;
+  font-size: 18px;
+  border: 1px solid #ddd;
+}
 
-    .ticker::before {
-      content: "";
-      display: inline-block;
-      width: 100%;
-    }
+.ticker span {
+  display: inline-block;
+  animation: ticker-scroll 10s linear infinite;
+}
 
-    .ticker span {
-      display: inline-block;
-      padding-left: 100%;
-      animation: ticker-scroll 30s linear infinite;
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0%); /* Start immediately visible */
+  }
+  100% {
+    transform: translateX(-100%); /* Scroll off to the left */
+  }
+}
 
-    }
-
-    @keyframes ticker-scroll {
-        0% {
-        transform: translateX(0%);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-    }
   </style>
 </head>
 <body>
   <div class="grid-container">
     <div class="grid-item">
-      <div class="ticker">
-        <span>Beginning on 16th October 2023, OUR CHANNEL will broadcast five LIVE stations dedicated to pivotal moments spanning STYLE, MUSIC, FILM, CULTURE and NEWS, as selected by Martine Rose and friends.</span>
-      </div>
+        <div class="ticker">
+            <span>Beginning on 16th October 2023, OUR CHANNEL will broadcast five LIVE stations dedicated to pivotal moments spanning STYLE, MUSIC, FILM, CULTURE and NEWS, as selected by Martine Rose and friends. </span>
+            <span>Beginning on 16th October 2023, OUR CHANNEL will broadcast five LIVE stations dedicated to pivotal moments spanning STYLE, MUSIC, FILM, CULTURE and NEWS, as selected by Martine Rose and friends. </span>
+          </div>
+          
       Column 1, Row 1
     </div>
 
