@@ -101,7 +101,6 @@ a {
 .close:hover {
   color: black;
 }
-
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -118,7 +117,7 @@ body {
 }
 
 .archive-video-section {
-  flex: 2;
+  flex: 3;
   display: flex;
   align-items: center;
   justify-content: center;
