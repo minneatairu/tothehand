@@ -24,27 +24,31 @@ video {
       max-width: 100%;
     }
 
-
-    marquee {
-      background-color: #f4f4f4;
-      padding: 10px;
+    .ticker-wrapper {
+      overflow: hidden;
       border: 1px solid #ddd;
+      background-color: #f4f4f4;
+      margin-bottom: 20px; /* Space between ticker and video */
+    }
+
+    .ticker {
+      display: inline-block;
+      white-space: nowrap;
+      padding-left: 100%; /* Start off-screen */
       font-size: 18px;
       color: black;
-      margin-bottom: 20px; /* Space between marquee and video */
     }
   </style>
 </head>
 <body>
   <div class="grid-container">
     <div class="grid-item">
+      <!-- Ticker -->
+      <div class="ticker-wrapper">
         <div class="ticker">
-    <!-- Ticker (Marquee) -->
-    <marquee behavior="scroll" direction="left">
-        Beginning on 16th October 2023, OUR CHANNEL will broadcast five LIVE stations dedicated to pivotal moments spanning STYLE, MUSIC, FILM, CULTURE and NEWS, as selected by Martine Rose and friends.
-      </marquee>
-        
+          Beginning on 16th October 2023, OUR CHANNEL will broadcast five LIVE stations dedicated to pivotal moments spanning STYLE, MUSIC, FILM, CULTURE and NEWS, as selected by Martine Rose and friends.
         </div>
+      </div>
           
 <!-- Video -->
 <video controls>
@@ -59,5 +63,27 @@ video {
       </div>
     </div>
   </div>
+
+  <script>
+    const ticker = document.querySelector('.ticker');
+    let tickerSpeed = 2;
+
+    function animateTicker() {
+      const tickerWidth = ticker.offsetWidth;
+      const wrapperWidth = ticker.parentElement.offsetWidth;
+
+      if (ticker.offsetLeft <= -tickerWidth) {
+        ticker.style.transform = `translateX(${wrapperWidth}px)`;
+      } else {
+        ticker.style.transform = `translateX(${ticker.offsetLeft - tickerSpeed}px)`;
+      }
+
+      requestAnimationFrame(animateTicker);
+    }
+
+    // Start Animation
+    ticker.style.transform = `translateX(100%)`;
+    animateTicker();
+  </script>
 </body>
 </html>
