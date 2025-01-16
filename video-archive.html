@@ -13,7 +13,7 @@
     }
 body{margin: 0;}
 
-
+.video-archive{background: black;color: white;}
     /* First Column: Fixed Video */
     .grid-item.fixed {
       position: sticky;
@@ -43,21 +43,22 @@ div.one{padding: 12%;}
       will-change: transform; /* Improve performance */
       font-size: 18px;
       line-height: 40px;
-      color: black;
+      color: white;
     }
 
     /* Second Column: Scrollable Text */
     .grid-item.scrollable {
       overflow-y: auto; /* Enable vertical scrolling */
       height: calc(100vh - 40px); /* Adjust height to fit the viewport */
-      border: 1px solid #ddd;
+   
       padding: 20px;
-      background-color: #f9f9f9;
+   
     }
 
   </style>
 </head>
 <body>
+    <div class="video-archive">
   <div class="grid-container">
     <!-- First Column -->
     <div class="grid-item">
@@ -98,7 +99,7 @@ div.one{padding: 12%;}
       </div>
     </div>
   </div>
-
+</div>
   <script>
     const ticker = document.querySelector('.ticker');
     let tickerSpeed = 2;
