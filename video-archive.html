@@ -7,7 +7,9 @@
   <style>
     .grid-container {
       display: grid;
-      grid-template-columns: 2fr 1fr; /* First column is 3 times larger */
+      grid-template-columns: 2fr 1fr; /* First column is twice as large as the second */
+      gap: 20px;
+      padding: 20px;
     }
 
     .grid-item {
@@ -17,31 +19,36 @@
       background-color: #f4f4f4;
     }
 
-
-video {
+    video {
       display: block;
       margin: 20px auto;
       max-width: 100%;
     }
 
+    /* Ticker Styles */
     .ticker-wrapper {
       overflow: hidden;
       border: 1px solid #ddd;
       background-color: #f4f4f4;
-      margin-bottom: 20px; /* Space between ticker and video */
+      margin-bottom: 20px;
+      position: relative;
+      height: 40px; /* Fixed height for the ticker */
     }
 
     .ticker {
       display: inline-block;
       white-space: nowrap;
-      padding-left: 100%; /* Start off-screen */
+      position: absolute;
+      will-change: transform; /* Improve performance */
       font-size: 18px;
+      line-height: 40px;
       color: black;
     }
   </style>
 </head>
 <body>
   <div class="grid-container">
+    <!-- First Column -->
     <div class="grid-item">
       <!-- Ticker -->
       <div class="ticker-wrapper">
@@ -49,15 +56,17 @@ video {
           Beginning on 16th October 2023, OUR CHANNEL will broadcast five LIVE stations dedicated to pivotal moments spanning STYLE, MUSIC, FILM, CULTURE and NEWS, as selected by Martine Rose and friends.
         </div>
       </div>
-          
-<!-- Video -->
-<video controls>
-    <source src="test.MP4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+
+      <!-- Video -->
+      <video controls>
+        <source src="test.MP4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
     </div>
 
-    <div class="grid-item">Column 2, Row 1
+    <!-- Second Column -->
+    <div class="grid-item">
+      Column 2, Row 1
       <div class="scrollable text">
         Our Channel revives a lost culture using modern tools, a time capsule of how life felt when SSENSE was born. This was the era of landlines, fanzines, peer-to-peer downloads, pirate radio and TV shows like The Word, Network 21 and Dance Energy.
       </div>
@@ -67,22 +76,25 @@ video {
   <script>
     const ticker = document.querySelector('.ticker');
     let tickerSpeed = 2;
+    let position = ticker.parentElement.offsetWidth;
 
     function animateTicker() {
-      const tickerWidth = ticker.offsetWidth;
-      const wrapperWidth = ticker.parentElement.offsetWidth;
+      // Move the ticker left
+      position -= tickerSpeed;
 
-      if (ticker.offsetLeft <= -tickerWidth) {
-        ticker.style.transform = `translateX(${wrapperWidth}px)`;
-      } else {
-        ticker.style.transform = `translateX(${ticker.offsetLeft - tickerSpeed}px)`;
+      // Reset the position when the ticker scrolls off-screen
+      if (position < -ticker.offsetWidth) {
+        position = ticker.parentElement.offsetWidth;
       }
 
+      // Apply the transform
+      ticker.style.transform = `translateX(${position}px)`;
+
+      // Continue the animation
       requestAnimationFrame(animateTicker);
     }
 
-    // Start Animation
-    ticker.style.transform = `translateX(100%)`;
+    // Start the animation
     animateTicker();
   </script>
 </body>
